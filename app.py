@@ -8,16 +8,28 @@ def index():
         username = request.form.get('username')
         password = request.form.get('pwd')
 
-        # JS alert validation (with dots at end to match tests)
+        # Validation checks (with periods at the end to match tests)
         if not username:
-            return '''<script>alert("Username cannot be empty.");window.location='/'</script>'''
+            return '''<script>
+            alert('Username cannot be empty.');
+            window.history.back();
+            </script>'''
+
         if not password:
-            return '''<script>alert("Password cannot be empty.");window.location='/'</script>'''
+            return '''<script>
+            alert('Password cannot be empty.');
+            window.history.back();
+            </script>'''
+
         if len(password) < 6:
-            return '''<script>alert("Password must be at least 6 characters long.");window.location='/'</script>'''
+            return '''<script>
+            alert('Password must be at least 6 characters long.');
+            window.history.back();
+            </script>'''
 
         # Successful submission
         return redirect(url_for('submit', username=username))
+
     return render_template('form.html')
 
 
@@ -28,4 +40,5 @@ def submit():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use host=0.0.0.0 so Jenkins & Docker can access it
+    app.run(host='0.0.0.0', port=5000, debug=True)
