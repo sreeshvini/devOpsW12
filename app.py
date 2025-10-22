@@ -8,13 +8,13 @@ def index():
         username = request.form.get('username')
         password = request.form.get('pwd')
 
-        # JS alert validation (matches Selenium tests)
+        # JS alert validation (with dots at end to match tests)
         if not username:
-            return '''<script>alert("Username cannot be empty");window.location='/'</script>'''
+            return '''<script>alert("Username cannot be empty.");window.location='/'</script>'''
         if not password:
-            return '''<script>alert("Password cannot be empty");window.location='/'</script>'''
+            return '''<script>alert("Password cannot be empty.");window.location='/'</script>'''
         if len(password) < 6:
-            return '''<script>alert("Password must be at least 6 characters long");window.location='/'</script>'''
+            return '''<script>alert("Password must be at least 6 characters long.");window.location='/'</script>'''
 
         # Successful submission
         return redirect(url_for('submit', username=username))
