@@ -34,7 +34,8 @@
 </head>
 <body>
     <h2>Register Here</h2>
-    <form method="POST" action="/submit">
+    <!-- ✅ Fix: action should be "/" not "/submit" -->
+    <form method="POST" action="/">
         <input type="text" name="username" placeholder="Enter Username"><br>
         <input type="password" name="pwd" placeholder="Enter Password"><br>
         <input type="submit" name="sb" value="Register">
